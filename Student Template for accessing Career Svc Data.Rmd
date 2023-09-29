@@ -1,6 +1,6 @@
 ---
 title: "FSB Placement Data Insights Project"
-author: "Elijah Weaver"
+author: "Elijah Weaver & Molly Wimer"
 output:
   html_document:
     date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -27,9 +27,9 @@ pacman::p_load(DataExplorer,tidyverse,readxl,zoo,stargazer,kableExtra,skimr,plot
 
 # Introduction and Purpose
 
-Write something here
+Molly Wimer and Elijah Weaver's Business Value Proposition for dealing with geographic tend problems. 
 
-
+![](images/BusValPropTemplate-Yao.drawio.png)
 
 # Data Sources
 
@@ -38,7 +38,7 @@ Write something here
 ## Read in the data
 
 ```{r}
-data=readRDS(file = "FSB_BI_Survey_2019_2021.rds")
+#data=readRDS(file = "FSB_BI_Survey_2019_2021.rds")
 ```
 
 # Data Preprocessing
@@ -48,4 +48,3 @@ Describing each data preprocessing step with small chunks of code, output where 
 # The rest of your document
 
 Add sections and subsections as necessary to guide your analysis
-
