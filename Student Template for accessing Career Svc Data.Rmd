@@ -1,6 +1,6 @@
 ---
-title: "Cleaning the Combined BI And Survey Career Data"
-author: "Your Name Here"
+title: "FSB Placement Data Insights Project"
+author: "Elijah Weaver"
 output:
   html_document:
     date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -28,6 +28,8 @@ pacman::p_load(DataExplorer,tidyverse,readxl,zoo,stargazer,kableExtra,skimr,plot
 # Introduction and Purpose
 
 Write something here
+
+
 
 # Data Sources
 
