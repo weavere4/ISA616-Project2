@@ -1,3 +1,7 @@
+# Group 4 Project Overview
+
+We took on the first prompt "Geographic trends". We are trying to predict where students might want to move in the future based on where students have gone in the past based on graduates from 2019 to 2021. We will look into regional trends, salary differentials, and job categories. In order to create these insights, we will need to create a linear model, a confidence interval, and utilize maps. Our product will be intuitive for users of any background to understand. Our goal is to use the past data to create insights that can be applied to future graduating classes and have stronger prediction abilities. 
+
 # Overview of the Repository
 
 The purpose of this repository is to interact with GitHub to access the files for our second project in ISA 616.  Below, I also include details about GitHub to help you in working in this environment.
