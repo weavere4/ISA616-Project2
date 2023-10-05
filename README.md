@@ -1,6 +1,12 @@
+# Elijah Weaver and Molly Wimer; October 5th, 2023
+
+# Description of the Audience and Purpose of your Project
+
+Our audience is Michelle Chevalier, the Farmer School of Business Director of Industry Partnerships. In the Farmer School of Business, a large emphasis is put on students getting jobs in "The Four C's" - Cincinnati, Columbus, Cleveland, and Chicago. Through our analysis, we want to see if students are getting a lot of jobs outside of the 4 C's. If we find that this is the case, this will change Michelle's role. She will expand her corporate partnership outside the 4 C's and try to connect with companies in other populated cities with Miami graduates. Once she determines which states are the most popular outside of the 4 C's, she will try to get some of these companies to come to career fair, have a presence on Handshake, and network with students. This project will help students who do not want to work in the 4 C's and help FSB faculty to provide company partnerships where there is student need.
+
 # Group 4 Project Overview
 
-We took on the first prompt "Geographic trends". We are trying to predict where students might want to move in the future based on where students have gone in the past based on graduates from 2019 to 2021. We will look into regional trends, salary differentials, and job categories. In order to create these insights, we will need to create a linear model, a confidence interval, and utilize maps. Our product will be intuitive for users of any background to understand. Our goal is to use the past data to create insights that can be applied to future graduating classes and have stronger prediction abilities. 
+We took on the first prompt "Geographic trends". We are trying to predict where students might want to move in the future based on where students have gone in the past based on graduates from 2019 to 2021. We will look at the value counts of each state to determine where most students are going. In order to create these insights, we will need to create a chloropleth. Our product will be intuitive for users of any background to understand. Our goal is to use the past data to create insights that can be applied to future graduating classes and have stronger prediction abilities. 
 
 # Overview of the Repository
 
