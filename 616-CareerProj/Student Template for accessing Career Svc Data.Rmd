@@ -33,13 +33,15 @@ Molly Wimer and Elijah Weaver's Business Value Proposition for dealing with geog
 
 # Data Sources
 
-Write something here
+**Description of the Data**
 
 ## Read in the data
 
 ```{r}
 data=readRDS(file = "FSB_BI_Survey_2019_2021.rds")
 ```
+
+
 
 # Data Preprocessing
 
@@ -112,7 +114,7 @@ state_mapping <- c(
     'georgia' = 'GA',
     'new york' = 'NY',
     'il, usa' = 'IL',
-    'tbd' = 'TBD',
+    'tbd' = NA,
     'oh/us' = 'OH',
     'ar' = 'AR',
     'virginia/ usa' = 'VA',
@@ -160,7 +162,7 @@ state_mapping <- c(
     'il/ usa' = 'IL',
     'ne' = 'NE',
     'new york' = 'NY',
-    'nan' = 'N/A',
+    'nan' = NA,
     'in / usa' = 'IN',
     'wisconsin / usa' = 'WI',
     'ma / usa' = "MA",
@@ -188,11 +190,14 @@ undecided_values <- c(
 )
 
 city_mapping <- c(
-  "New York City" = "New York",
+  "New york" = "New York City",
   "Witchita" = "Wichita",
-  "new york" = "New York",
+  "new york" = "New York City",
   "Indianpolis" = "Indianapolis",
-  "Washington D.C" = "Washington, D.C",
+  "Washington, D.C" = "Washington",
+  "Washington DC" = "Washington",
+  "Washington, D.C." = "Washington",
+  "Washington D.C" = "Washington",
   "New York CIty" = "New York",
   "Cincinatti" = "Cincinnati",
   "Findlay (Tentative)" = "Findlay",
@@ -205,15 +210,41 @@ city_mapping <- c(
   "Fort Lauderdale" = "Fort Lauderdale",
   "Fort Myers" = "Fort Myers",
   "Ft Myers" = "Fort Myers",
-  "NYC" = "New York",
+  "NYC" = "New York City",
   "Mt. Healthy" = "Mt. Healthy",
   "Philadephia" = "Philadelphia",
-  "Ft. Myers" = "Fort Myers"
+  "Ft. Myers" = "Fort Myers",
+  "Cincinnati, OH" = "Cincinnati",
+  "boston" = "Boston",
+  "Brooklyn" = "New York City",
+  "Brooklyn Heights" = "New York City",
+  "Manhattan" = "New York City",
+  "North Canton, Ohio" = "North Canton",
+  "Westerville (Columbus)" = "Westerville",
+  "Chandler, AZ" = "Chandler",
+  "To Be Determined" = NA,
+  "Blue ash" = "Blue Ash",
+  "Not Available" = NA,
+  "Springfield, OH" = "Springfield",
+  "Various" = NA,
+  "August" = "Augusta",
+  "CLEVELAND" = "Cleveland",
+  "Colubmus" = "Columbus",
+  "Hamiliton" = "Hamilton",
+  "Indiana" = "Indianapolis",
+  "New York" = "New York City",
+  "Washinton" = "Washington",
+  "na" = NA,
+  "nan" = NA,
+  "TBD" = NA,
+  "Don't Know Yet" = NA,
+  "N/A" = NA
 )
 
 honors_levels <- c("Cum laude", "Summa Cum Laude", "Magna Cum Laude")
 ```
 
+Utilziing the mapping lists and tidyverse code to mutate, standardize, and clean the data
 ```{r}
 
 data <- data %>%
@@ -222,7 +253,7 @@ data <- data %>%
   # mutating all values that point to uncertainty or not knowing to be a single column called undecided
   mutate(survey_gradschool = ifelse(survey_gradschool %in% undecided_values, "Undecided", survey_gradschool)) %>%
   # Map the city column the same way as the state column
-  mutate(survey_city = ifelse(tolower(survey_city) %in% names(city_mapping), city_mapping[(survey_city)], survey_city)) %>% 
+  mutate(survey_city = ifelse(survey_city %in% names(city_mapping), city_mapping[(survey_city)], survey_city)) %>% 
   #Getting rid of values that are not condusive with the column and making it an integer
   mutate(survey_offers = ifelse(survey_offers %in% c("multiple", "an","2+"), NA, as.integer(survey_offers))) %>% 
   #Getting rid of values that are not condusive with the column and making it an integer
@@ -243,18 +274,18 @@ data <- data %>%
   select(-`Transfer Work (Pre-Banner)`)
 ```
 
-```{r}
+In our data cleaning process, we tackled various tasks to ensure our dataset was accurate and ready for analysis. One of the key aspects we addressed was the standardization of location data, particularly the 'survey_state' and 'survey_city' columns. We observed that there were issues like misspelled entries, inconsistent capitalization, or different formats used to represent the same places. To effectively understand where students are moving and seeking jobs, we needed a clean and uniform representation of these locations.
 
-```
+To achieve this, we developed a mapping list and applied it to correct all non-standard values. This made all entries consistent and allowed for easier analysis.
 
-```{r}
+We applied a similar approach to the 'grad school' column, where we noticed multiple answers referencing 'undecided.' We standardized these entries to create a more consistent dataset.
 
-```
+For the 'internships' and 'offers' columns, we transformed the data into numeric values to ensure the correct data type. During this process, any values that were not numeric or were ambiguous were converted to 'n/a' to maintain data integrity.
 
-```{r}
-unique(data$survey_city)
+Next, we reviewed the data types of various columns, such as 'latin_honors,' 'years,' 'gender,' 'pref_field,' and 'pref_loc,' and adjusted them to the appropriate data types to ensure accurate analysis.
 
-```
+Finally, we removed certain columns, namely 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' These columns were deemed to have no meaningful value according to the documentation and were therefore eliminated from our dataset.
+
 # The rest of your document
 
 Add sections and subsections as necessary to guide your analysis
