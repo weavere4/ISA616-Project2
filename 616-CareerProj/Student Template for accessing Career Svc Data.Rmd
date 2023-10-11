@@ -46,146 +46,206 @@ data=readRDS(file = "FSB_BI_Survey_2019_2021.rds")
 Describing each data preprocessing step with small chunks of code, output where necessary, and documentation
 
 ```{r}
-state_mapping <- list(
-    oh = 'OH',
-    ohio = 'OH',
+state_mapping <- c(
+    'oh' = 'OH',
+    'ohio' = 'OH',
     'ohio / usa' = 'OH',
-    ny = 'NY',
-    ga = 'GA',
-    il = 'IL',
-    ca = 'CA',
-    ks = 'KS',
+    'ny' = 'NY',
+    'ga' = 'GA',
+    'il' = 'IL',
+    'ca' = 'CA',
+    'ks' = 'KS',
     'new york' = 'NY',
-    mn = 'MN',
-    nc = 'NC',
-    ky = 'KY',
-    tx = 'TX',
+    'mn' = 'MN',
+    'nc' = 'NC',
+    'ky' = 'KY',
+    'tx' = 'TX',
     'oh, usa' = 'OH',
-    illinois = 'IL',
+    'illinois' = 'IL',
     'd.c.' = 'DC',
-    nv = 'NV',
-    in = 'IN',
-    wi = 'WI',
-    ma = 'MA',
+    'nv' = 'NV',
+    'in' = 'IN',
+    'wi' = 'WI',
+    'ma' = 'MA',
     'michigan, detroit' = 'MI',
-    co = 'CO',
-    indiana = 'IN',
-    minnesota = 'MN',
-    wa = 'WA',
+    'co' = 'CO',
+    'indiana' = 'IN',
+    'minnesota' = 'MN',
+    'wa' = 'WA',
     'washington d.c/united states' = 'DC',
-    nj = 'NJ',
-    ut = 'UT',
-    mo = 'MO',
-    mi = 'MI',
-    ia = 'IA',
-    pennsylvania = 'PA',
-    remote = 'Remote',
-    oh = 'OH',
+    'nj' = 'NJ',
+    'ut' = 'UT',
+    'mo' = 'MO',
+    'mi' = 'MI',
+    'ia' = 'IA',
+    'pennsylvania' = 'PA',
+    'remote' = 'Remote',
+    'oh' = 'OH',
     'il/usa' = 'IL',
-    pa = 'PA',
+    'pa' = 'PA',
     'ohio/usa' = 'OH',
     'north carolina' = 'NC',
-    washington = 'WA',
-    va = 'VA',
-    il = 'IL',
-    ri = 'RI',
-    az = 'AZ',
+    'washington' = 'WA',
+    'va' = 'VA',
+    'il' = 'IL',
+    'ri' = 'RI',
+    'az' = 'AZ',
     'georgia, usa' = 'GA',
-    me = 'ME',
-    ct = 'CT',
+    'me' = 'ME',
+    'ct' = 'CT',
     'massachusetts, usa' = 'MA',
-    md = 'MD',
+    'md' = 'MD',
     'tba / usa' = 'TBA',
-    florida = 'FL',
+    'florida' = 'FL',
     'fujian province' = 'Fujian',
-    california = 'CA',
-    michigan = 'MI',
+    'california' = 'CA',
+    'michigan' = 'MI',
     'ohio/united states' = 'OH',
-    wisconsin = 'WI',
+    'wisconsin' = 'WI',
     'illinois / usa' = 'IL',
-    tn = 'TN',
-    montana = 'MT',
+    'tn' = 'TN',
+    'montana' = 'MT',
     'mi / u.s.' = 'MI',
-    kansas = 'KS',
-    na = 'N/A',
+    'kansas' = 'KS',
+    'na' = 'N/A',
     'ohio / the united states' = 'OH',
-    georgia = 'GA',
+    'georgia' = 'GA',
     'new york' = 'NY',
     'il, usa' = 'IL',
-    tbd = 'TBD',
+    'tbd' = 'TBD',
     'oh/us' = 'OH',
-    ar = 'AR',
+    'ar' = 'AR',
     'virginia/ usa' = 'VA',
-    texas = 'TX',
+    'texas' = 'TX',
     'virginia (va)' = 'VA',
-    india = 'India',
+    'india' = 'India',
     'rhode island' = 'RI',
     'ohio/ united states' = 'OH',
-    ohio = 'OH',
     'il, united states' = 'IL',
     'oh/usa' = 'OH',
     'illinois/ us' = 'IL',
-    kentucky = 'KY',
-    china = 'China',
+    'kentucky' = 'KY',
+    'china' = 'China',
     'illinois/usa' = 'IL',
-    fl = 'FL',
+    'fl' = 'FL',
     'illinois, usa' = 'IL',
-    oregon = 'OR',
-    ms = 'MS',
-    illinois = 'IL',
+    'oregon' = 'OR',
+    'ms' = 'MS',
+    'illinois' = 'IL',
     'ohio, usa' = 'OH',
-    usa = 'USA',
-    dc = 'DC',
-    la = 'LA',
-    delaware = 'DE',
+    'usa' = 'USA',
+    'dc' = 'DC',
+    'la' = 'LA',
+    'delaware' = 'DE',
     'il, us' = 'IL',
-    colorado = 'CO',
-    il = 'IL',
+    'colorado' = 'CO',
+    'il' = 'IL',
     'texas/ usa' = 'TX',
-    connecticut = 'CT',
+    'connecticut' = 'CT',
     'ohio / united states' = 'OH',
-    ohio = 'OH',
-    sc = 'SC',
-    tennessee = 'TN',
+    'ohio' = 'OH',
+    'sc' = 'SC',
+    'tennessee' = 'TN',
     'n/a' = 'N/A',
-    montenegro = 'Montenegro',
-    belize = 'Belize',
-    ireland = 'Ireland',
+    'montenegro' = 'Montenegro',
+    'belize' = 'Belize',
+    'ireland' = 'Ireland',
     'na' = 'N/A',
-    nh = 'NH',
+    'nh' = 'NH',
     'district of columbia' = 'DC',
-    us = 'USA',
-    canada = 'Canada',
+    'us' = 'USA',
+    'canada' = 'Canada',
     'new york, usa' = 'NY',
     'tx/usa' = 'TX',
     'il/ usa' = 'IL',
-    ne = 'NE',
+    'ne' = 'NE',
     'new york' = 'NY',
     'nan' = 'N/A',
     'in / usa' = 'IN',
     'wisconsin / usa' = 'WI',
-    'ma / usa' = 'MA',
-    'virginia' = 'VA',
-    'colorado/ united states' = 'CO')
+    'ma / usa' = "MA",
+    'virginia' = "VA",
+    'colorado/ united states' = 'CO',
+    'nebraska' = "NE",
+    'maine' = "ME",
+    'united states' = 'USA',
+    'zhejiang province' = 'China'
+)
 
-# Function to standardize state names
-standardize_state_name <- function(state_name) {
-  if (!is.na(state_name) && is.character(state_name)) {
-    lower_state_name <- tolower(state_name)
-    standardized_state <- state_mapping[[lower_state_name]]
-    
-    if (!is.null(standardized_state)) {
-      return(standardized_state)
-    }
-  }
-  
-  return(state_name)  # Return the input state_name as is
-}
+undecided_values <- c(
+  "Undecided",
+  "Not sure, maybe NYU",
+  "Not decided yet",
+  "Unsure",
+  "Not decided",
+  "I haven't decided yet. :)",
+  "No yet",
+  "have not chosen yet",
+  "not sure",
+  "I haven't decided yet.",
+  "not decided",
+  "Not revive offers yet"
+)
 
+city_mapping <- c(
+  "New York City" = "New York",
+  "Witchita" = "Wichita",
+  "new york" = "New York",
+  "Indianpolis" = "Indianapolis",
+  "Washington D.C" = "Washington, D.C",
+  "New York CIty" = "New York",
+  "Cincinatti" = "Cincinnati",
+  "Findlay (Tentative)" = "Findlay",
+  "Cincinnnati" = "Cincinnati",
+  "Philadephia" = "Philadelphia",
+  "cleveland" = "Cleveland",
+  "chicago" = "Chicago",
+  "Sylvania" = "Sylvania",
+  "Forth Worth" = "Fort Worth",
+  "Fort Lauderdale" = "Fort Lauderdale",
+  "Fort Myers" = "Fort Myers",
+  "Ft Myers" = "Fort Myers",
+  "NYC" = "New York",
+  "Mt. Healthy" = "Mt. Healthy",
+  "Philadephia" = "Philadelphia",
+  "Ft. Myers" = "Fort Myers"
+)
 
-standardized_states <- sapply(states, standardize_state_name)
+honors_levels <- c("Cum laude", "Summa Cum Laude", "Magna Cum Laude")
 ```
 
+```{r}
+
+data <- data %>%
+  #formalizing the state column to be standardized
+  mutate(survey_state = ifelse(tolower(survey_state) %in% names(state_mapping), state_mapping[tolower(survey_state)], survey_state)) %>% 
+  # mutating all values that point to uncertainty or not knowing to be a single column called undecided
+  mutate(survey_gradschool = ifelse(survey_gradschool %in% undecided_values, "Undecided", survey_gradschool)) %>%
+  # Map the city column the same way as the state column
+  mutate(survey_city = ifelse(tolower(survey_city) %in% names(city_mapping), city_mapping[(survey_city)], survey_city)) %>% 
+  #Getting rid of values that are not condusive with the column and making it an integer
+  mutate(survey_offers = ifelse(survey_offers %in% c("multiple", "an","2+"), NA, as.integer(survey_offers))) %>% 
+  #Getting rid of values that are not condusive with the column and making it an integer
+  mutate(survey_internships = ifelse(survey_internships %in% c("RPT", "N/A"), NA, as.integer(survey_internships))) %>% 
+  mutate(survey_pref_loc = ifelse(survey_pref_loc == "Yes", 1, ifelse(survey_pref_loc == "No", 0, NA))) %>% 
+  mutate(survey_pref_field = ifelse(survey_pref_field == "Yes", 1, ifelse(survey_pref_field == "No", 0, NA))) %>%
+  mutate(latin_honors = factor(latin_honors, levels = honors_levels)) %>% 
+  mutate(year.x = as.integer(year.x)) %>% 
+  mutate(Gender = factor(Gender))
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+unique(data$survey_city)
+
+```
 # The rest of your document
 
 Add sections and subsections as necessary to guide your analysis
