@@ -264,14 +264,28 @@ data <- data %>%
   mutate(survey_pref_field = as.numeric(ifelse(survey_pref_field == "Yes", 1, ifelse(survey_pref_field == "No", 0, NA)))) %>%
   # makes the altin honors valriable a factor
   mutate(latin_honors = factor(latin_honors, levels = honors_levels)) %>% 
-  # makes year a number
-  mutate(year.x = as.numeric(year.x)) %>% 
   # makes gender a factor
   mutate(Gender = factor(Gender)) %>% 
+  # Making Race Ethnicity a factor as its fixed values
+  mutate(IPEDS.Race.Ethnicity = factor(IPEDS.Race.Ethnicity)) %>% 
+  # Doing the same with year
+  mutate(year.x = factor(year.x)) %>% 
+  # Doing the same with GPS.Range
+  mutate(GPA.Range = factor(GPA.Range)) %>% 
+  # Doing the same with survey plans
+  mutate(survey_plans = factor(survey_plans)) %>% 
   # Getting rid of three variables that have no meaning per the data dictionary
   select(-BBRJ) %>% 
   select(-`Study Abroad Courtesy Account`) %>% 
   select(-`Transfer Work (Pre-Banner)`)
+```
+
+```{r}
+## NOTES##
+# do we want to get rid of the latin honors variable because its already bening represnted by dummy variables
+  #   if so use this code.   select(-BBRJ) %>% and replace it with the mutate latin honors
+# Not dropping others after I had a conversation with her she said that its a small enough dataset that we dont really need to drop any information incase we need to use it later. i.e internships and department
+#
 ```
 
 In our data cleaning process, we tackled various tasks to ensure our dataset was accurate and ready for analysis. One of the key aspects we addressed was the standardization of location data, particularly the 'survey_state' and 'survey_city' columns. We observed that there were issues like misspelled entries, inconsistent capitalization, or different formats used to represent the same places. To effectively understand where students are moving and seeking jobs, we needed a clean and uniform representation of these locations.
