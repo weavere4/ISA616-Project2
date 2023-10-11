@@ -28,6 +28,7 @@ pacman::p_load(DataExplorer,tidyverse,readxl,zoo,stargazer,kableExtra,skimr,plot
 # Introduction and Purpose
 
 Molly Wimer and Elijah Weaver's Business Value Proposition for dealing with geographic tend problems. 
+**Description of Audience and Purpose**
 
 ![](images/BusValPropTemplate-Yao.drawio.png)
 
@@ -300,6 +301,7 @@ Next, we reviewed the data types of various columns, such as 'latin_honors,' 'ye
 
 Finally, we removed certain columns, namely 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' These columns were deemed to have no meaningful value according to the documentation and were therefore eliminated from our dataset.
 
-# The rest of your document
-
-Add sections and subsections as necessary to guide your analysis
+# Computing Enviroment
+```{r}
+sessionInfo()
+```
