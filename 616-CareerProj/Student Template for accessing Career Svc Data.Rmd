@@ -227,11 +227,20 @@ data <- data %>%
   mutate(survey_offers = ifelse(survey_offers %in% c("multiple", "an","2+"), NA, as.integer(survey_offers))) %>% 
   #Getting rid of values that are not condusive with the column and making it an integer
   mutate(survey_internships = ifelse(survey_internships %in% c("RPT", "N/A"), NA, as.integer(survey_internships))) %>% 
-  mutate(survey_pref_loc = ifelse(survey_pref_loc == "Yes", 1, ifelse(survey_pref_loc == "No", 0, NA))) %>% 
-  mutate(survey_pref_field = ifelse(survey_pref_field == "Yes", 1, ifelse(survey_pref_field == "No", 0, NA))) %>%
+  # Turns survey pref location into a binary indecator
+  mutate(survey_pref_loc = as.numeric(ifelse(survey_pref_loc == "Yes", 1, ifelse(survey_pref_loc == "No", 0, NA)))) %>%
+  # turns pref field into a binary indicator
+  mutate(survey_pref_field = as.numeric(ifelse(survey_pref_field == "Yes", 1, ifelse(survey_pref_field == "No", 0, NA)))) %>%
+  # makes the altin honors valriable a factor
   mutate(latin_honors = factor(latin_honors, levels = honors_levels)) %>% 
-  mutate(year.x = as.integer(year.x)) %>% 
-  mutate(Gender = factor(Gender))
+  # makes year a number
+  mutate(year.x = as.numeric(year.x)) %>% 
+  # makes gender a factor
+  mutate(Gender = factor(Gender)) %>% 
+  # Getting rid of three variables that have no meaning per the data dictionary
+  select(-BBRJ) %>% 
+  select(-`Study Abroad Courtesy Account`) %>% 
+  select(-`Transfer Work (Pre-Banner)`)
 ```
 
 ```{r}
