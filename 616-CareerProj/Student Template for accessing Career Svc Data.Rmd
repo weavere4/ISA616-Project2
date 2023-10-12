@@ -300,7 +300,7 @@ We applied a similar approach to the 'grad school' column, where we noticed mult
 
 For the 'internships' and 'offers' columns, we transformed the data into numeric values to ensure the correct data type. During this process, any values that were not numeric or were ambiguous were converted to 'n/a' to maintain data integrity.
 
-Next, we reviewed the data types of various columns, such as 'latin_honors,' 'years,' 'gender,' 'pref_field,' and 'pref_loc,' and adjusted them to the appropriate data types to ensure accurate analysis.
+Next, we reviewed the data types of various columns, such as 'latin_honors', 'years', 'gender', 'Race', 'survey_plans' ,'pref_field', and 'pref_loc'. We adjusted them to the appropriate data types to ensure accurate analysis. For most of the columns we transformed them to factors to allow for analyses on the categorical variable. 
 
 Finally, we removed certain columns, namely 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' These columns were deemed to have no meaningful value according to the documentation and were therefore eliminated from our dataset.
 
