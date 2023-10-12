@@ -24,10 +24,7 @@ graphics.off() # close all graphics
 if(require(pacman)==FALSE) install.packages("pacman")
 pacman::p_load(DataExplorer,tidyverse,readxl,zoo,stargazer,kableExtra,skimr,plotly,ggpubr,vtable,tm)
 ```
-
-# Introduction and Purpose
-
-Molly Wimer and Elijah Weaver's Business Value Proposition for dealing with geographic tend problems. **Description of Audience and Purpose**
+# Description of the Audience and Purpose of your Project
 
 ![](images/BusValPropTemplate-Yao.drawio.png)
 
@@ -247,7 +244,6 @@ honors_levels <- c("Cum laude", "Summa Cum Laude", "Magna Cum Laude")
 Utilziing the mapping lists and tidyverse code to mutate, standardize, and clean the data
 
 ```{r}
-
 data <- data %>%
   #formalizing the state column to be standardized
   mutate(survey_state = ifelse(tolower(survey_state) %in% names(state_mapping), state_mapping[tolower(survey_state)], survey_state)) %>% 
@@ -280,13 +276,14 @@ data <- data %>%
   select(-`Study Abroad Courtesy Account`) %>% 
   select(-`Transfer Work (Pre-Banner)`)
 ```
-
 ```{r}
-## NOTES##
-# do we want to get rid of the latin honors variable because its already bening represnted by dummy variables
-  #   if so use this code.   select(-BBRJ) %>% and replace it with the mutate latin honors
-# Not dropping others after I had a conversation with her she said that its a small enough dataset that we dont really need to drop any information incase we need to use it later. i.e internships and department
-#
+#Summary statistics to get an easy overview of what the data looks like now
+summary_data <- data.frame(
+  DataType = sapply(data, class),
+  NAs = sapply(data, function(x) sum(is.na(x)))
+)
+
+print(summary_data)
 ```
 
 In our data cleaning process, we tackled various tasks to ensure our dataset was accurate and ready for analysis. One of the key aspects we addressed was the standardization of location data, particularly the 'survey_state' and 'survey_city' columns. We observed that there were issues like misspelled entries, inconsistent capitalization, or different formats used to represent the same places. To effectively understand where students are moving and seeking jobs, we needed a clean and uniform representation of these locations.
@@ -300,6 +297,7 @@ For the 'internships' and 'offers' columns, we transformed the data into numeric
 Next, we reviewed the data types of various columns, such as 'latin_honors,' 'years,' 'gender,' 'pref_field,' and 'pref_loc,' and adjusted them to the appropriate data types to ensure accurate analysis.
 
 Finally, we removed certain columns, namely 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' These columns were deemed to have no meaningful value according to the documentation and were therefore eliminated from our dataset.
+
 
 # Computing Enviroment
 
