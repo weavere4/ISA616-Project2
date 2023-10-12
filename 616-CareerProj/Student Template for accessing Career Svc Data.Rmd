@@ -304,6 +304,7 @@ Next, we reviewed the data types of various columns, such as 'latin_honors', 'ye
 
 Finally, we removed certain columns, namely 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' These columns were deemed to have no meaningful value according to the documentation and were therefore eliminated from our dataset.
 
+# Flex Dashboard
 
 # Computing Enviroment
 
