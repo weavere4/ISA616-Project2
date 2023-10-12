@@ -27,8 +27,7 @@ pacman::p_load(DataExplorer,tidyverse,readxl,zoo,stargazer,kableExtra,skimr,plot
 
 # Introduction and Purpose
 
-Molly Wimer and Elijah Weaver's Business Value Proposition for dealing with geographic tend problems. 
-**Description of Audience and Purpose**
+Molly Wimer and Elijah Weaver's Business Value Proposition for dealing with geographic tend problems. **Description of Audience and Purpose**
 
 ![](images/BusValPropTemplate-Yao.drawio.png)
 
@@ -36,13 +35,13 @@ Molly Wimer and Elijah Weaver's Business Value Proposition for dealing with geog
 
 **Description of the Data**
 
+This data was entered by students, meaning that there are many inconsistencies with the way that the data was entered. For example, for job location of Cincinnati, the students could enter "Cincinnati, OH" or "cincinnati" or "Cincinnati, OH, USA". There are several variables that are incorrectly coded like year, gender, GPA range, race, survey_pref, location_pref, field_pref. In order to get meaning from these variables, they need to be manipulated before analyzing. There are 3235 total observations in the dataset. 
+
 ## Read in the data
 
 ```{r}
 data=readRDS(file = "FSB_BI_Survey_2019_2021.rds")
 ```
-
-
 
 # Data Preprocessing
 
@@ -246,6 +245,7 @@ honors_levels <- c("Cum laude", "Summa Cum Laude", "Magna Cum Laude")
 ```
 
 Utilziing the mapping lists and tidyverse code to mutate, standardize, and clean the data
+
 ```{r}
 
 data <- data %>%
@@ -302,6 +302,7 @@ Next, we reviewed the data types of various columns, such as 'latin_honors,' 'ye
 Finally, we removed certain columns, namely 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' These columns were deemed to have no meaningful value according to the documentation and were therefore eliminated from our dataset.
 
 # Computing Enviroment
+
 ```{r}
 sessionInfo()
 ```
