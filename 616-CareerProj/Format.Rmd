@@ -1,0 +1,118 @@
+---
+title: "FSB State Placement Dashboard"
+author: "Elijah Weaver & Molly Wimer"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+#runtime: shiny
+---
+
+```{r setup, include=FALSE,echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE,message=FALSE,warning=FALSE,cache = TRUE)
+
+#package intialization
+if(require(pacman)==FALSE) install.packages("pacman")
+pacman::p_load(tidyverse, #for data manipulation
+               plotly, #for interactive plots
+               flexdashboard, #to make a dashboard
+               fontawesome, #for icons
+               DT #for better tables
+               )
+
+#read in data
+internraw=readRDS("FSB_BI_Survey_2019_2021.rds")
+```
+
+# Survey Overview {data-orientation=columns}
+
+Overview of survey responses
+
+## row {data-width=700}
+
+### Where Students are going
+
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+### Why does this matter
+    
+```{r,echo=FALSE}
+
+```
+   
+   
+## row {data-width=300}
+
+### Student Stte Repsonse Rate
+
+```{r, echo = FALSE}
+rate <- round(100*nrow(internraw)/8000,0)
+gauge(rate, min = 0, max = 100,symbol = '%',
+      gaugeSectors(success = c(80,100), warning = c(40,79), danger = c(0,39)
+        )
+      )
+```
+
+### Preffered location
+
+```{r, echo = FALSE}
+rate <- round(100*nrow(internraw)/8000,0)
+gauge(rate, min = 0, max = 100,symbol = '%',
+      gaugeSectors(success = c(80,100), warning = c(40,79), danger = c(0,39)
+        )
+      )
+```
+
+
+### Number of Responses
+
+```{r,echo=FALSE}
+nusable = nrow(internraw)
+valueBox(nusable, icon = "fa-users")
+```   
+
+
+# Internships by Majors {data-orientation=columns}
+
+## Column {data-height=800}
+
+### Cloropleth
+
+Chloropleth showing the us with number of student in each state post graduation represnted by a color scale
+
+```{r,echo=FALSE}
+
+```
+
+
+### Filter {data-height=200}
+
+Be able to filter by major and also by region
+
+# Major By City {data-orientation=columns}
+
+## Column {data-width=700}
+
+### Cities with over 10 people 
+
+Bar chart of major by city that is filterable below by different cities
+
+### Filter by City {data-height=200}
+
+```{r,echo=FALSE}
+
+```
+
+## Column {data-width=300}
+
+### Overall bar chart of states
+
+```{r}
+
+```
+
+### Overall bar chart of cities
+
+```{r}
+
+```
+
