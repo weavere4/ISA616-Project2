@@ -292,7 +292,7 @@ city_mapping <- c(
 honors_levels <- c("Cum laude", "Summa Cum Laude", "Magna Cum Laude")
 ```
 
-Utilizing the mapping lists and tidyverse code to mutate, standardize, and clean the data
+Utilziing the mapping lists and tidyverse code to mutate, standardize, and clean the data
 
 ```{r}
 data <- data %>%
