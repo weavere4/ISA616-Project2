@@ -1,9 +1,9 @@
 ---
 title: "FSB Placement Data Insights Project"
 author: "Elijah Weaver & Molly Wimer"
-output:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
   html_document:
-    date: "`r format(Sys.time(), '%d %B, %Y')`"
     code_folding: hide
     df_print: paged
     number_sections: yes
