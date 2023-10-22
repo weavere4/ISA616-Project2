@@ -292,7 +292,7 @@ city_mapping <- c(
 honors_levels <- c("Cum laude", "Summa Cum Laude", "Magna Cum Laude")
 ```
 
-Utilziing the mapping lists and tidyverse code to mutate, standardize, and clean the data
+Utilizing the mapping lists and tidyverse code to mutate, standardize, and clean the data
 
 ```{r}
 data <- data %>%
@@ -327,6 +327,11 @@ data <- data %>%
   select(-`Study Abroad Courtesy Account`) %>% 
   select(-`Transfer Work (Pre-Banner)`)
 ```
+
+```{r}
+df = write.csv(data, "616-CareerProj 2/data.csv", row.names=FALSE)
+```
+
 ```{r}
 #Summary statistics to get an easy overview of what the data looks like now
 summary_data <- data.frame(

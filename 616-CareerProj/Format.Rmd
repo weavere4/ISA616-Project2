@@ -29,12 +29,14 @@ Overview of survey responses
 
 ## row {data-width=700}
 
-### Where Students are going
+### Where are students going?
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+We spoke with Michelle Chevalier, Director of Industry Partnerships for Farmer School of Business (FSB), to gain insights about how she picks locations to build corporate relationships with for FSB students. Historically, it was believed that most FSB graduates accepted jobs in "The 4-C's": Cincinnati, Columbus, Cleveland, and Chicago. Naturally, FSB dedicates many resources to building relationships with companies in these cities. Our hypothesis is that students are still accepting jobs in the 4 C's, but there is also a business case to expand to other cities. Michelle stated that in her role, she has to consider preferred locations from students as well as look at industry trends to predict where students will be heading the future. Furthermore, she said another pain she faces in her role is that "If I only know of 10 students who want to live in Houston, TX, and those 10 students are spread across 3 majors, it's hard to make the case to a company to spend their time and money engaging with Miami for just a few students". After considering this, our analysis will also include major specific analysis for each of the cities we are proposing. Using historical FSB grad data, we will provide Michelle with a list of cities where there is a high number of students within the same major that have moved to this city.
 
-### Why does this matter
-    
+### Why does this matter?
+
+If we just rely on the historical precedent that most students are going to the 4 C's after graduation, we could be missing a large population of students that are going to other cities. These students may not feel supported by the university which would reflect badly upon FSB and it's ability to place students in their preferred roles. For example, if a student is from the Northeast region of the US and wants to study at FSB, but hears that grads are only placed in the 4 C's and they want to return to the Northeast post-grad, they might pick another university that places students all over the US. Out-of-state students have historically made up 40% of Miami's student body, meaning that these students are critical to ensure the future of the university.
+
 ```{r,echo=FALSE}
 
 ```
@@ -42,20 +44,20 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
    
 ## row {data-width=300}
 
-### Student Stte Repsonse Rate
+### Student State Repsonse Rate
 
 ```{r, echo = FALSE}
-rate <- round(100*nrow(internraw)/8000,0)
+rate <- round(100*sum(!is.na(df$survey_state)) / nrow(df), 0)
 gauge(rate, min = 0, max = 100,symbol = '%',
       gaugeSectors(success = c(80,100), warning = c(40,79), danger = c(0,39)
         )
       )
 ```
 
-### Preffered location
+### Preferred location
 
 ```{r, echo = FALSE}
-rate <- round(100*nrow(internraw)/8000,0)
+rate <- round(100*sum(df$survey_pref_loc=="Yes")/nrow(df),0)
 gauge(rate, min = 0, max = 100,symbol = '%',
       gaugeSectors(success = c(80,100), warning = c(40,79), danger = c(0,39)
         )
@@ -66,7 +68,7 @@ gauge(rate, min = 0, max = 100,symbol = '%',
 ### Number of Responses
 
 ```{r,echo=FALSE}
-nusable = nrow(internraw)
+nusable = nrow(df)
 valueBox(nusable, icon = "fa-users")
 ```   
 
