@@ -144,7 +144,7 @@ df_filtered <- clean_data[clean_data$survey_city %in% names(which(table(clean_da
 
 p <- ggplot(df_filtered, aes(x = reorder(survey_city, survey_city, function(x) -length(x)))) +
   geom_bar(color = "steelblue", fill = "steelblue") +
-  xlab("State") +
+  xlab("City") +
   ylab("Number of Responses") +
   theme_bw() +
   theme(axis.text.x = element_text(vjust = 10, hjust = 10, angle = 90)) 
