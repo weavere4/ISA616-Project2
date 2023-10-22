@@ -83,7 +83,7 @@ p <- ggplot(clean_data, aes(x = reorder(major1, major1, function(x) -length(x)))
 ggplotly(p)
 ```
 
-# Student by City {data-orientation=columns}
+# Student by State {data-orientation=columns}
 
 ## Column {data-width=600}
 
@@ -99,7 +99,6 @@ plot_usmap(data = state_counts, values = "Count", color = "black") +
   scale_fill_continuous(name = "Population (2015)", label = scales::comma) + 
   theme(legend.position = "right")
 ```
-## Column {data-width=400}
 
 ### Table of Student States
 
@@ -123,16 +122,33 @@ datatable(data1,rownames=F,extensions='Buttons',
 
 ## Column {data-width=400}
 
-### Overall bar chart of states
+### Overall bar chart of states with greater than 5 people
 
-```{r}
+```{r, echo=FALSE}
+cleaner_data <- subset(clean_data, nchar(as.character(survey_state)) <= 2)
+cleaner_data <- clean_data[clean_data$survey_state %in% names(which(table(clean_data$survey_state) >= 5)), ]
 
+p <- ggplot(cleaner_data, aes(x = reorder(survey_state, survey_state, function(x) -length(x)))) +
+  geom_bar(color = "steelblue", fill = "steelblue") +
+  xlab("State") +
+  ylab("Number of Responses") +
+  theme_bw() +
+  theme(axis.text.x = element_text(vjust = 10, hjust = 10, angle = 90)) 
+ggplotly(p)
 ```
 
-### Overall bar chart of cities
+### Overall bar chart of cities with greater than 10 people 
 
-```{r}
+```{r,echo=FALSE}
+df_filtered <- clean_data[clean_data$survey_city %in% names(which(table(clean_data$survey_city) >= 10)), ]
 
+p <- ggplot(df_filtered, aes(x = reorder(survey_city, survey_city, function(x) -length(x)))) +
+  geom_bar(color = "steelblue", fill = "steelblue") +
+  xlab("State") +
+  ylab("Number of Responses") +
+  theme_bw() +
+  theme(axis.text.x = element_text(vjust = 10, hjust = 10, angle = 90)) 
+ggplotly(p)
 ```
 
 ## Column {data-width=600}
