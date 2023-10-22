@@ -93,7 +93,8 @@ data=readRDS(file = "FSB_BI_Survey_2019_2021.rds")
 
 # Data Preprocessing
 
-Describing each data preprocessing step with small chunks of code, output where necessary, and documentation
+
+## Mapping the Variables
 
 ```{r}
 state_mapping <- c(
@@ -292,7 +293,7 @@ city_mapping <- c(
 honors_levels <- c("Cum laude", "Summa Cum Laude", "Magna Cum Laude")
 ```
 
-Utilizing the mapping lists and tidyverse code to mutate, standardize, and clean the data
+For each variable we will use that had data that 
 
 ```{r}
 data <- data %>%
@@ -301,7 +302,20 @@ data <- data %>%
   # mutating all values that point to uncertainty or not knowing to be a single column called undecided
   mutate(survey_gradschool = ifelse(survey_gradschool %in% undecided_values, "Undecided", survey_gradschool)) %>%
   # Map the city column the same way as the state column
-  mutate(survey_city = ifelse(survey_city %in% names(city_mapping), city_mapping[(survey_city)], survey_city)) %>% 
+  mutate(survey_city = ifelse(survey_city %in% names(city_mapping), city_mapping[(survey_city)], survey_city))
+  
+```
+
+In our data cleaning process, we tackled various tasks to ensure our dataset was accurate and ready for analysis. One of the key aspects we addressed was the standardization of location data, particularly the 'survey_state' and 'survey_city' columns. We observed that there were issues like misspelled entries, inconsistent capitalization, or different formats used to represent the same places. To effectively understand where students are moving and seeking jobs, we needed a clean and uniform representation of these locations.
+
+To achieve this, we developed a mapping list and applied it to correct all non-standard values. This made all entries consistent and allowed for easier analysis.
+
+We applied a similar approach to the 'grad school' column, where we noticed multiple answers referencing 'undecided.' We standardized these entries to create a more consistent dataset.
+
+# Changing and Removing Values
+
+```{r}
+data <- data %>% 
   #Getting rid of values that are not condusive with the column and making it an integer
   mutate(survey_offers = ifelse(survey_offers %in% c("multiple", "an","2+"), NA, as.integer(survey_offers))) %>% 
   #Getting rid of values that are not condusive with the column and making it an integer
@@ -309,7 +323,20 @@ data <- data %>%
   # Turns survey pref location into a binary indecator
   mutate(survey_pref_loc = as.numeric(ifelse(survey_pref_loc == "Yes", 1, ifelse(survey_pref_loc == "No", 0, NA)))) %>%
   # turns pref field into a binary indicator
-  mutate(survey_pref_field = as.numeric(ifelse(survey_pref_field == "Yes", 1, ifelse(survey_pref_field == "No", 0, NA)))) %>%
+  mutate(survey_pref_field = as.numeric(ifelse(survey_pref_field == "Yes", 1, ifelse(survey_pref_field == "No", 0, NA))))
+
+```
+
+For the 'internships' and 'offers' columns, we transformed the data into numeric values to ensure the correct data type. During this process, any values that were not numeric or were ambiguous were converted to 'n/a' to maintain data integrity.
+
+For survey_pref_loc and survey_pref_field we saw they were encoded as yes and no and in order to use them in a possible model we thought it best to encode them as 1s and zeros instead. 
+
+For all of this we used mutate as part of the titdyverse package 
+
+## Factor Encoding
+
+```{r}
+data <- data %>% 
   # makes the altin honors valriable a factor
   mutate(latin_honors = factor(latin_honors, levels = honors_levels)) %>% 
   # makes gender a factor
@@ -321,12 +348,26 @@ data <- data %>%
   # Doing the same with GPS.Range
   mutate(GPA.Range = factor(GPA.Range)) %>% 
   # Doing the same with survey plans
-  mutate(survey_plans = factor(survey_plans)) %>% 
+  mutate(survey_plans = factor(survey_plans))
   # Getting rid of three variables that have no meaning per the data dictionary
+```
+
+Next, we reviewed the data types of various columns, such as 'latin_honors', 'years', 'gender', 'Race', 'survey_plans'. We adjusted them to the appropriate data types to ensure accurate analysis. For most of the columns we transformed them to factors to allow for analyses on the categorical variable. 
+
+## Deleting Variables
+
+```{r}
+data <- data %>% 
   select(-BBRJ) %>% 
   select(-`Study Abroad Courtesy Account`) %>% 
   select(-`Transfer Work (Pre-Banner)`)
 ```
+
+
+Finally, we removed certain columns, namely 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' These columns were deemed to have no meaningful value according to the documentation and were therefore eliminated from our dataset.
+
+# Data Summary and Saving
+
 ```{r}
 #Summary statistics to get an easy overview of what the data looks like now
 summary_data <- data.frame(
@@ -337,17 +378,10 @@ summary_data <- data.frame(
 print(summary_data)
 ```
 
-In our data cleaning process, we tackled various tasks to ensure our dataset was accurate and ready for analysis. One of the key aspects we addressed was the standardization of location data, particularly the 'survey_state' and 'survey_city' columns. We observed that there were issues like misspelled entries, inconsistent capitalization, or different formats used to represent the same places. To effectively understand where students are moving and seeking jobs, we needed a clean and uniform representation of these locations.
+```{r}
+saveRDS(data, file = "Cleaned_Survey_Data.RDS")
+```
 
-To achieve this, we developed a mapping list and applied it to correct all non-standard values. This made all entries consistent and allowed for easier analysis.
-
-We applied a similar approach to the 'grad school' column, where we noticed multiple answers referencing 'undecided.' We standardized these entries to create a more consistent dataset.
-
-For the 'internships' and 'offers' columns, we transformed the data into numeric values to ensure the correct data type. During this process, any values that were not numeric or were ambiguous were converted to 'n/a' to maintain data integrity.
-
-Next, we reviewed the data types of various columns, such as 'latin_honors', 'years', 'gender', 'Race', 'survey_plans' ,'pref_field', and 'pref_loc'. We adjusted them to the appropriate data types to ensure accurate analysis. For most of the columns we transformed them to factors to allow for analyses on the categorical variable. 
-
-Finally, we removed certain columns, namely 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' These columns were deemed to have no meaningful value according to the documentation and were therefore eliminated from our dataset.
 
 # Computing Enviroment
 
