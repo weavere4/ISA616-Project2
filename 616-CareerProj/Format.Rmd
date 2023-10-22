@@ -85,11 +85,9 @@ ggplotly(p)
 
 # Student by City {data-orientation=columns}
 
-## Column {data-height=800}
+## Column {data-width=600}
 
 ### Cloropleth
-
-Chloropleth showing the us with number of student in each state post graduation represnted by a color scale
 
 ```{r,echo=FALSE}
 state_counts <- as.data.frame(table(clean_data$survey_state))
@@ -101,7 +99,25 @@ plot_usmap(data = state_counts, values = "Count", color = "black") +
   scale_fill_continuous(name = "Population (2015)", label = scales::comma) + 
   theme(legend.position = "right")
 ```
+## Column {data-width=400}
 
+### Table of Student States
+
+```{r,echo=FALSE}
+data1 <- clean_data %>% 
+  filter(!is.na(survey_state)) %>% 
+  group_by(survey_state) %>%
+  summarize(count=n())
+
+datatable(data1,rownames=F,extensions='Buttons',
+          options=list(dom='Bfrtip',
+                       buttons = c("copy","csv","excel")
+                       ),
+          filter=list(position='bottom',
+                      clear=F,plain=T
+                      )
+          )
+```
 
 # Major By City {data-orientation=columns}
 
@@ -138,8 +154,6 @@ datatable(data,rownames=F,extensions='Buttons',
                       clear=F,plain=T
                       )
           )
-
-#Fix Chicago OH,USA and fix New York City OH
 ```
 
 
