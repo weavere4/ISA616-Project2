@@ -30,7 +30,7 @@ clean_data =readRDS("Cleaned_Survey_Data.RDS")
 
 Overview of survey responses
 
-## row {data-width=700}
+## row {data-width=600}
 
 ### Where are students going?
 
@@ -41,7 +41,7 @@ We spoke with Michelle Chevalier, Director of Industry Partnerships for Farmer S
 If we just rely on the historical precedent that most students are going to the 4 C's after graduation, we could be missing a large population of students that are going to other cities. These students may not feel supported by the university which would reflect badly upon FSB and it's ability to place students in their preferred roles. For example, if a student is from the Northeast region of the US and wants to study at FSB, but hears that grads are only placed in the 4 C's and they want to return to the Northeast post-grad, they might pick another university that places students all over the US. Out-of-state students have historically made up 40% of Miami's student body, meaning that these students are critical to ensure the future of the university.
    
    
-## row {data-width=300}
+## row {data-width=400}
 
 ### Student State Repsonse Rate
 
@@ -56,8 +56,8 @@ gauge(rate, min = 0, max = 100,symbol = '%',
 ### Preferred location
 
 ```{r, echo = FALSE}
-rate <- round(100*sum(clean_data$survey_pref_loc=="Yes")/nrow(clean_data),0)
-gauge(rate, min = 0, max = 100,symbol = '%',
+rate1 <- round(100*sum(clean_data$survey_pref_loc == 1, na.rm = TRUE)/sum(!is.na(clean_data$survey_pref_loc)), 0)
+gauge(rate1, min = 0, max = 100,symbol = '%',
       gaugeSectors(success = c(80,100), warning = c(40,79), danger = c(0,39)
         )
       )
@@ -73,7 +73,6 @@ valueBox(nusable, icon = "fa-users")
 
 ### Student Majors
 
-<<<<<<< HEAD
 ```{r, echo = FALSE}
 p <- ggplot(clean_data, aes(x = reorder(major1, major1, function(x) -length(x)))) +
   geom_bar(color = "steelblue", fill = "steelblue") +
@@ -83,15 +82,8 @@ p <- ggplot(clean_data, aes(x = reorder(major1, major1, function(x) -length(x)))
   theme(axis.text.x = element_text(vjust = 10, hjust = 10, angle = 90)) 
 ggplotly(p)
 ```
-=======
-### Number of Responses
 
-```{r,echo=FALSE}
-nusable = nrow(df)
-valueBox(nusable, icon = "fa-users")
-```   
-
-
+# Student by City {data-orientation=columns}
 
 ## Column {data-height=800}
 
@@ -110,40 +102,10 @@ plot_usmap(data = state_counts, values = "Count", color = "black") +
   theme(legend.position = "right")
 ```
 
-```{r}
-spdf <- geojson_read("US.json",  what = "sp")
-```
-
-```{r}
-#spdf_fortified <- tidy(spdf, region = "code")
-
-# Now I can plot this shape easily as described before:
-ggplot() +
-  geom_polygon(data = spdf, aes( x = long, y = lat, group = group), fill="white", color="grey") +
-  theme_void() +
-  coord_map()
-```
-
-
-### Filter {data-height=200}
-
-Be able to filter by major and also by region
 
 # Major By City {data-orientation=columns}
 
-## Column {data-width=700}
-
-### Cities with over 10 people 
-
-Bar chart of major by city that is filterable below by different cities
-
-### Filter by City {data-height=200}
-
-```{r,echo=FALSE}
-
-```
-
-## Column {data-width=300}
+## Column {data-width=400}
 
 ### Overall bar chart of states
 
@@ -156,4 +118,28 @@ Bar chart of major by city that is filterable below by different cities
 ```{r}
 
 ```
+
+## Column {data-width=600}
+
+### City Table 
+
+```{r,echo=FALSE}
+data <- clean_data %>% 
+  filter(!is.na(survey_city)) %>% 
+  group_by(survey_city,survey_state,major1) %>%
+  summarize(count=n()) %>% 
+  arrange(major1,-count)
+
+datatable(data,rownames=F,extensions='Buttons',
+          options=list(dom='Bfrtip',
+                       buttons = c("copy","csv","excel")
+                       ),
+          filter=list(position='bottom',
+                      clear=F,plain=T
+                      )
+          )
+
+#Fix Chicago OH,USA and fix New York City OH
+```
+
 
