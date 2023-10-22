@@ -12,3 +12,7 @@ plotly
 flexdashboard
 fontawesome
 DT
+lubridate
+usmap
+geojsonio
+broom

@@ -39,32 +39,37 @@ We spoke with Michelle Chevalier, Director of Industry Partnerships for Farmer S
 ### Why does this matter?
 
 If we just rely on the historical precedent that most students are going to the 4 C's after graduation, we could be missing a large population of students that are going to other cities. These students may not feel supported by the university which would reflect badly upon FSB and it's ability to place students in their preferred roles. For example, if a student is from the Northeast region of the US and wants to study at FSB, but hears that grads are only placed in the 4 C's and they want to return to the Northeast post-grad, they might pick another university that places students all over the US. Out-of-state students have historically made up 40% of Miami's student body, meaning that these students are critical to ensure the future of the university.
-
-```{r,echo=FALSE}
-
-```
    
    
 ## row {data-width=300}
 
-### Number of Responses
-
-```{r,echo = FALSE}
-nusable = nrow(clean_data)
-valueBox(nusable, icon = "fa-users")
-``` 
-
 ### Student State Repsonse Rate
 
 ```{r, echo = FALSE}
-
+rate <- round(100*sum(!is.na(clean_data$survey_state)) / nrow(clean_data), 0)
+gauge(rate, min = 0, max = 100,symbol = '%',
+      gaugeSectors(success = c(80,100), warning = c(40,79), danger = c(0,39)
+        )
+      )
 ```
 
 ### Preferred location
 
 ```{r, echo = FALSE}
-
+rate <- round(100*sum(clean_data$survey_pref_loc=="Yes")/nrow(clean_data),0)
+gauge(rate, min = 0, max = 100,symbol = '%',
+      gaugeSectors(success = c(80,100), warning = c(40,79), danger = c(0,39)
+        )
+      )
 ```
+
+
+### Number of Responses
+
+```{r,echo=FALSE}
+nusable = nrow(clean_data)
+valueBox(nusable, icon = "fa-users")
+```   
 
 ### Student Majors
 
