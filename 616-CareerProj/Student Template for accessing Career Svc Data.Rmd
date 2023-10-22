@@ -327,6 +327,11 @@ data <- data %>%
 
 ```
 
+```{r}
+data$survey_state[data$survey_city == "Chicago"] <- "IL"
+data$survey_state[data$survey_city == "New York City"] <- "NY"
+```
+
 For the 'internships' and 'offers' columns, we transformed the data into numeric values to ensure the correct data type. During this process, any values that were not numeric or were ambiguous were converted to 'n/a' to maintain data integrity.
 
 For survey_pref_loc and survey_pref_field we saw they were encoded as yes and no and in order to use them in a possible model we thought it best to encode them as 1s and zeros instead. 
