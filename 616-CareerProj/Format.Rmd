@@ -16,6 +16,7 @@ pacman::p_load(tidyverse, #for data manipulation
                plotly, #for interactive plots
                flexdashboard, #to make a dashboard
                fontawesome, #for icons
+               shiny,
                DT,
                usmap,
                geojsonio,
@@ -170,6 +171,20 @@ datatable(data,rownames=F,extensions='Buttons',
                       clear=F,plain=T
                       )
           )
+
+output$datatable <- renderDataTable({
+  datatable(data, rownames = FALSE, extensions = 'Buttons',
+    options = list(
+      dom = 'Bfrtip',
+      buttons = c("copy", "csv", "excel")
+    ),
+    filter = list(
+      position = 'bottom',
+      clear = FALSE,
+      plain = TRUE
+    )
+  )
+})
 ```
 
 
