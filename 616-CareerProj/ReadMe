@@ -1,20 +1,31 @@
 # Elijah Weaver and Molly Wimer; October 26th, 2023
 
-# Files
+Below is the run order in which the rmd should be knitted. To run these files you will need FSB_BI_Survey_2019_2021.rds which is included within the project folder as well as BusValPropTemplate-Yao.drawio which is included within an image folder within the project folder. For a more detailed explanation of each file please look farther below.
 
-Run Order:
+# Run Order:
 
 1. Student Template for accessing Career Svc Data.Rmd
 2. Dashboard-Final.Rmd
 
-The files included within our R Project are:
+- The files included within our R Project are:
 
-- Student Template for accessing Career Svc Data.Rmd
+1. Student Template for accessing Career Svc Data.Rmd
 
-This file is a data cleaning file. The files will load int the original RDS (FSB_BI_Survey_2019_2021.rds). After reading in the data the file maps the city and state data so that it is clean and all entries are standard for later data analysis. Furthermore, The cleaning file will change the encoding of survey_pref_loc and survey_pref_field. Furehtmore it will encode 'latin_honors', 'years', 'gender', 'Race', and 'survey_plans' as factors for possible data analysis at a later point. Lastly, it will drop 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' as they are unnesseary for data analysis. 
+  This file is a data-cleaning file. The files will load in the original RDS (FSB_BI_Survey_2019_2021.rds) as well as an image of our Business Value proposition. After reading the data the file maps the city and state data so that it is clean and all entries are standard for later data analysis. Furthermore, The cleaning file will change the encoding of survey_pref_loc and survey_pref_field. Furthermore it will encode 'latin_honors', 'years', 'gender', 'Race', and 'survey_plans' as factors for possible data analysis at a later point. Lastly, it will drop 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' as they are unnecessary for data analysis. After all data cleaning is completed an RDS file is made with the clean data and downloaded in the same directory. This file is named Cleaned_Survey_Data.RDS.
 
-After running knitting this file it should create another file called Cleaned_Survey_Data.RDS which will be used in the next file for our dashbaord
+  1a. FSB_BI_Survey_2019_2021.rds
+    
+    Original Uncleaned Data looking at the past three years (2019-2022) of farmer graduates and their job and internship    surveys.
+    
+  1b. BusValPropTemplate-Yao.drawio
+    
+    An image of the business value proposition created at the beginning of our project to outline our client's pain points   and dhow we intend to solve these as well as create an additional gain.
 
-- Dashboard-Final.Rmd
+2. Dashboard-Final.Rmd
 
-
+  This is the second file to be knitted to create our final dashboard. This dashboard created from knitting utilizes the Cleaned_Survey_Data.RDS from our previous file to create visuals. The first page of our dashboard outlines what the dashboard will show and why this matters. Also, the dashboard shows some simple statistics about our cleaned data such as how many people responded and how many got their preferred location. The next page shows a choropleth about how many students go to each state so there is an easy visual for people to see and digest. We decided to not include OH and IL as they both were outliers to the rest of the data points and made the visual unreadable. Below this, we have a table with the same information as the choropleth but includes OH and IL. This makes it easy to get exact numbers and is downloadable if you want to do other analyses. The third page shows a bar chart of states with more than 10 people and Cities with more than 5 people. These are supported with a table that shows city by major so you can get a better understanding of what majors go to each city. The last page gives a conclusion about the dashboard and our project as a whole. 
+  
+  2a. Cleaned_Survey_Data.RDS
+  
+    This is a cleaned data set made at the end of our Student Template for accessing Career Svc Data.RMD is the final dataframe from this file. It is the basis for all of our visuals and recommendations. 
+    
