@@ -171,4 +171,20 @@ datatable(data,rownames=F,extensions='Buttons',
           )
 ```
 
+# Analysis {data-orientation=columns}
 
+For each page of the dashboard, we will explore what information they provide towards our analysis.
+
+## Column {data-width=600}
+
+### Survey Overview
+
+The survey overview page gives us general information that will be useful in this analysis. The text boxes help explain our customer and the current pains they are experiencing which our solution aims to address. The gauges inform us that 60% of students responded to this survey for a total of 3235 responses. Furthermore, we learn that 92% of students have jobs in their preferred location which means that this data can mostly be generalized about where students want to be after graduation. Finally, we see a breakdown of how many students are in each major in this data set. Finance, marketing, and accounting have the highest numbers. Our analysis will be most informative for people in this major because we have more data to work with. 
+
+### Student by State
+
+This chloropleth is the first deliverable for the customer. Since our goal was to analyze where students are going outside of the "4 C's", we excluded Ohio and Illinois from this map. States with a lighter blue color have more FSB graduates than states with a navy color. Gray states had no students there. This map is our first indication that states like New York, California, and Indiana have a high count of students also going there. The table below the chloropleth can be used to get exact counts of where students are going to that state. We will dig into this analysis deeper on the Major by City page. 
+
+### Major by City
+
+The bar chart of states with more than 5 people reiterates the information from the Student by State page, but includes Ohio and Illinois to show the relative amount of students going to each state. Below, the bar chart of cities with more than 10 people, can give Michelle an indication of what cities might be worth exploring to build corporate relationships. For example, after the 4 C's, the cities with the next highest counts are New York City, Indianapolis, Denver, and Boston. You can then move to the table to explore the data by city. For example, if you type 'New York City' into the filter, you can see that 33 finance majors and 20 marketing majors are going to these cities. Michelle could focus her corporate relationships on finance firms or marketing agencies in New York City. Majors like accounting and supply chain have 6 or less people, so they might not be worth exploring corporate relationships. Similarly, Charlotte has a high concentration of finance majors with 8 people in our data set going there. During our initial interview, Michelle stated that there has been increasing desire to move to Charlotte recently for finance roles, so the data supports this claim. By inspecting count of each major in each city, Michelle can pick which cities to focus building corporate relationships with.
