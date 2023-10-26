@@ -1,0 +1,20 @@
+# Elijah Weaver and Molly Wimer; October 26th, 2023
+
+# Files
+
+Run Order:
+
+1. Student Template for accessing Career Svc Data.Rmd
+2. Dashboard-Final.Rmd
+
+The files included within our R Project are:
+
+- Student Template for accessing Career Svc Data.Rmd
+
+This file is a data cleaning file. The files will load int the original RDS (FSB_BI_Survey_2019_2021.rds). After reading in the data the file maps the city and state data so that it is clean and all entries are standard for later data analysis. Furthermore, The cleaning file will change the encoding of survey_pref_loc and survey_pref_field. Furehtmore it will encode 'latin_honors', 'years', 'gender', 'Race', and 'survey_plans' as factors for possible data analysis at a later point. Lastly, it will drop 'BBRJ,' 'study abroad courtesy account,' and 'transfer work.' as they are unnesseary for data analysis. 
+
+After running knitting this file it should create another file called Cleaned_Survey_Data.RDS which will be used in the next file for our dashbaord
+
+- Dashboard-Final.Rmd
+
+

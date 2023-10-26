@@ -305,6 +305,10 @@ data <- data %>%
   mutate(survey_city = ifelse(survey_city %in% names(city_mapping), city_mapping[(survey_city)], survey_city))
   
 ```
+```{r}
+data$survey_state[data$survey_city == "Chicago"] <- "IL"
+data$survey_state[data$survey_city == "New York City"] <- "NY"
+```
 
 In our data cleaning process, we tackled various tasks to ensure our dataset was accurate and ready for analysis. One of the key aspects we addressed was the standardization of location data, particularly the 'survey_state' and 'survey_city' columns. We observed that there were issues like misspelled entries, inconsistent capitalization, or different formats used to represent the same places. To effectively understand where students are moving and seeking jobs, we needed a clean and uniform representation of these locations.
 
@@ -325,11 +329,6 @@ data <- data %>%
   # turns pref field into a binary indicator
   mutate(survey_pref_field = as.numeric(ifelse(survey_pref_field == "Yes", 1, ifelse(survey_pref_field == "No", 0, NA))))
 
-```
-
-```{r}
-data$survey_state[data$survey_city == "Chicago"] <- "IL"
-data$survey_state[data$survey_city == "New York City"] <- "NY"
 ```
 
 For the 'internships' and 'offers' columns, we transformed the data into numeric values to ensure the correct data type. During this process, any values that were not numeric or were ambiguous were converted to 'n/a' to maintain data integrity.
@@ -383,10 +382,13 @@ summary_data <- data.frame(
 print(summary_data)
 ```
 
+# Saving Cleaned Data
+
 ```{r}
 saveRDS(data, file = "Cleaned_Survey_Data.RDS")
 ```
 
+Cleaned data will be downloaded and used in the next step.
 
 # Computing Enviroment
 
