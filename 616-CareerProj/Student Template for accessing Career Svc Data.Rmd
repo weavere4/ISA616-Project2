@@ -33,6 +33,7 @@ Our audience is Michelle Chevalier, the Farmer School of Business Director of In
 We took on the first prompt "Geographic trends". We are trying to predict where students might want to move in the future based on where students have gone in the past based on graduates from 2019 to 2021. We will look at the value counts of each state to determine where most students are going. In order to create these insights, we will need to create a chloropleth. Our product will be intuitive for users of any background to understand. Our goal is to use the past data to create insights that can be applied to future graduating classes and have stronger prediction abilities. 
 
 ![](images/BusValPropTemplate-Yao.drawio.png)
+
 # Project Statement
 
 To develop a chloropleth that shows which cities/states that FSB graduates are moving to besides Cincinnati, Columbus, Cleveland, and Chicago to see if there is a need to develop corporate relationships in these geographic areas. 
