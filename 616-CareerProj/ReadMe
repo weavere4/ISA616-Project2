@@ -28,6 +28,7 @@ Below is the run order in which the rmd should be knitted. To run these files yo
 2. Dashboard-Final.Rmd
 
   This is the second file to be knitted to create our final dashboard. This dashboard created from knitting utilizes the Cleaned_Survey_Data.RDS from our previous file to create visuals. The first page of our dashboard outlines what the dashboard will show and why this matters. Also, the dashboard shows some simple statistics about our cleaned data such as how many people responded and how many got their preferred location. The next page shows a choropleth about how many students go to each state so there is an easy visual for people to see and digest. We decided to not include OH and IL as they both were outliers to the rest of the data points and made the visual unreadable. Below this, we have a table with the same information as the choropleth but includes OH and IL. This makes it easy to get exact numbers and is downloadable if you want to do other analyses. The third page shows a bar chart of states with more than 10 people and Cities with more than 5 people. These are supported with a table that shows city by major so you can get a better understanding of what majors go to each city. The last page gives a conclusion about the dashboard and our project as a whole. 
+** If the file will not knit we have included photos of the dashboards within the images folder **
   
   2a. Dashboard-Final.html
   
